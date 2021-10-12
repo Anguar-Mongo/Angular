@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { MenuComponent } from './componentes/menu/menu.component';
 import { MenuAdminComponent } from './componentes/menu-admin/menu-admin.component';
+import { ProductoComponent } from './componentes/producto/producto.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { MenuAdminComponent } from './componentes/menu-admin/menu-admin.componen
     LoginComponent,
     MenuComponent,
     MenuAdminComponent,
+    ProductoComponent,
   ],
   imports: [
     BrowserModule,
