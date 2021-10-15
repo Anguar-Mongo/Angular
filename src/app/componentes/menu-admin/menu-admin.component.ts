@@ -9,6 +9,14 @@ export class MenuAdminComponent implements OnInit {
 
   constructor() { }
 
+
+
+  logout(){
+    localStorage.clear();
+    window.location.reload()
+
+  }
+
   ngOnInit(): void {
   }
 
