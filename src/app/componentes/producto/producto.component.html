@@ -1,15 +1,16 @@
 
 
-<ng-container *ngFor="let producto of productos">
-<div class="card" >
+<div class="container mt-5">
+<ng-container *ngFor="let producto of productos | paginate: { itemsPerPage: 5, currentPage: p }">
+<div class="card my-3">
     <img class="card-img-top" src="{{producto.link_imagen}}" alt="Card image cap">
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <h5 class="card-title">{{producto.nombre}}</h5>
+      <p class="card-text">{{producto.descripcion}}</p>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Cras justo odio</li>
-      <li class="list-group-item">Dapibus ac facilisis in</li>
+      <li class="list-group-item">Precio: {{producto.precio}}</li>
+      <li class="list-group-item">Haz todo lo demás Juan</li>
       <li class="list-group-item">Vestibulum at eros</li>
     </ul>
     <div class="card-body">
@@ -20,6 +21,8 @@
     
 </ng-container>
 
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
 <!--
 <div class="container">
     <div class="row">

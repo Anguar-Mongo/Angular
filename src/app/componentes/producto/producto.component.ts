@@ -10,7 +10,7 @@ import { producto } from 'src/app/interfaces/producto.interfaz';
   styleUrls: ['./producto.component.css']
 })
 export class ProductoComponent implements OnInit {
-
+  p: number = 1;
   producto:producto = {
         marca:"",
         nombre:"",
