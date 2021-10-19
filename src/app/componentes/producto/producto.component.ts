@@ -30,14 +30,75 @@ export class ProductoComponent implements OnInit {
   productos:any;
 
   constructor(private http: HttpClient) { 
+    /*this.http.get(`http://localhost:3000/api/producto/`).subscribe((data) =>{
+      this.productos = data;
+      console.log(this.productos)
+    })*/ 
+
+  }
+
+  base(){
+    this.http.get(`http://localhost:3000/api/producto/categoria/Base`).subscribe((data) =>{
+      this.productos = data;
+      console.log(this.productos)
+    })
+  }
+  Blush(){
+    this.http.get(`http://localhost:3000/api/producto/categoria/Blush`).subscribe((data) =>{
+      this.productos = data;
+      console.log(this.productos)
+    })
+  }
+  Cancealer(){
+    this.http.get(`http://localhost:3000/api/producto/categoria/Cancealer`).subscribe((data) =>{
+      this.productos = data;
+      console.log(this.productos)
+    })
+  }
+  Highlight(){
+    this.http.get(`http://localhost:3000/api/producto/categoria/Highlight`).subscribe((data) =>{
+      this.productos = data;
+      console.log(this.productos)
+    })
+  }
+  Labios(){
+    this.http.get(`http://localhost:3000/api/producto/categoria/Labios`).subscribe((data) =>{
+      this.productos = data;
+      console.log(this.productos)
+    })
+  }
+  Lapiz(){
+    this.http.get(`http://localhost:3000/api/producto/categoria/Lapiz`).subscribe((data) =>{
+      this.productos = data;
+      console.log(this.productos)
+    })
+  }
+  Powder(){
+    this.http.get(`http://localhost:3000/api/producto/categoria/Powder`).subscribe((data) =>{
+      this.productos = data;
+      console.log(this.productos)
+    })
+  }
+
+  Skincare(){
+    this.http.get(`http://localhost:3000/api/producto/categoria/Skincare`).subscribe((data) =>{
+      this.productos = data;
+      console.log(this.productos)
+    })
+  }
+  Sombras(){
+    this.http.get(`http://localhost:3000/api/producto/categoria/Sombras`).subscribe((data) =>{
+      this.productos = data;
+      console.log(this.productos)
+    })
+  }
+ 
+
+  ngOnInit(): void {
     this.http.get(`http://localhost:3000/api/producto/`).subscribe((data) =>{
       this.productos = data;
       console.log(this.productos)
     })
-
-  }
-
-  ngOnInit(): void {
   }
 
 }

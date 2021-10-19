@@ -1,28 +1,78 @@
+<button id="carrito" type="button" (click)="base()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Base</button>
+<button id="carrito" type="button" (click)="Blush()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Blush</button>
+<button id="carrito" type="button" (click)="Cancealer()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Cancealer</button>
+<button id="carrito" type="button" (click)="Highlight()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Highlight</button>
+<button id="carrito" type="button" (click)="Labios()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Labios</button>
+<button id="carrito" type="button" (click)="Lapiz()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Lapiz</button>
+<button id="carrito" type="button" (click)="Powder()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Powder</button>
+<button id="carrito" type="button" (click)="Skincare()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Skincare</button>
+<button id="carrito" type="button" (click)="Sombras()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Sombras</button>
+<button id="carrito" type="button" (click)="ngOnInit()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Todos</button>
 
 
 <div class="container mt-5">
 <ng-container *ngFor="let producto of productos | paginate: { itemsPerPage: 5, currentPage: p }">
-<div class="card my-3">
-    <img class="card-img-top" src="{{producto.link_imagen}}" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">{{producto.nombre}}</h5>
-      <p class="card-text">{{producto.descripcion}}</p>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Precio: {{producto.precio}}</li>
-      <li class="list-group-item">Haz todo lo demás Juan</li>
-      <li class="list-group-item">Vestibulum at eros</li>
-    </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
+<div id="card" class="card my-3">
+    
+    <div class="card-title">
+      <table>
+        <tr>
+          <td>
+              <div class="circular--landscape">
+                <a href="{{producto.link_producto_pagina}}" target="_blank">
+                  <img class="card-img-top" src="{{producto.link_imagen}}" alt="Card image cap" >
+                </a>
+              </div>
+            </td>
+          <td>
+            <h3 class="card-title">{{producto.nombre}}</h3>
+            <h4 class="card-text">Marca: {{producto.marca}}</h4>
+            <p class="card-text">{{producto.descripcion}}</p>
+            <button id="carrito" type="button" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Comprar</button>      </table>
+      <table class="table " id="TablaProducto">
+        <tr>
+          <th id="Negro"> Precio</th>
+          <td id="Blanco">{{producto.precio}}</td>
+        </tr>
+        <tr>
+          <th  scope="row" id="Negro">Categoria</th>
+          <td id="Blanco">{{producto.categoria}}</td>
+        </tr>
+        <tr>
+          <th id="Negro" scope="row" >Peso</th>
+          <td id="Blanco">{{producto.peso}}</td>
+        </tr>
+        <tr>
+          <th id="Negro" >Acabado</th>
+          <td id="Blanco">{{producto.acabado}}</td>
+          
+        </tr>
+        <tr>
+          <th id="Negro" >Status</th>
+          <td id="Blanco">{{producto.status}}</td>
+        </tr>
+        <ng-container *ngIf="producto.notas">
+          <tr>
+            <th id="Negro" >Notas</th>
+            <td id="Blanco">{{producto.notas}}</td>
+          </tr>
+      </ng-container>
+        
+      
+  
+      </table>
     </div>
   </div>
     
 </ng-container>
 
 <pagination-controls (pageChange)="p = $event"></pagination-controls>
-</div>
+
+      
+      
+    </div>
+    <div class="card-body">
+      </div>
 <!--
 <div class="container">
     <div class="row">
