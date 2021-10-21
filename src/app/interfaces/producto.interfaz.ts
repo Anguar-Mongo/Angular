@@ -12,6 +12,7 @@ export interface producto {
         categoria:String,
         link_imagen:String,
         link_producto_pagina:String
+        _id:String
         
 
 }

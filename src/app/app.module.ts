@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { Input } from '@angular/core';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +12,7 @@ import { LoginComponent } from './componentes/login/login.component';
 import { MenuComponent } from './componentes/menu/menu.component';
 import { MenuAdminComponent } from './componentes/menu-admin/menu-admin.component';
 import { ProductoComponent } from './componentes/producto/producto.component';
+import { CarritoComponent } from './componentes/carrito/carrito.component';
 
 @NgModule({
   declarations: [
@@ -19,13 +21,15 @@ import { ProductoComponent } from './componentes/producto/producto.component';
     MenuComponent,
     MenuAdminComponent,
     ProductoComponent,
+    CarritoComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    //Input
   ],
   providers: [],
   bootstrap: [AppComponent]

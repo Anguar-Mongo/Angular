@@ -4,6 +4,7 @@ import { producto } from 'src/app/interfaces/producto.interfaz';
 
 
 
+
 @Component({
   selector: 'app-producto',
   templateUrl: './producto.component.html',
@@ -24,16 +25,34 @@ export class ProductoComponent implements OnInit {
         cantidad:"",
         categoria:"",
         link_imagen:"",
-        link_producto_pagina:""
+        link_producto_pagina:"",
+        _id:""
   } 
 
   productos:any;
 
+  carrito:Array<producto>=[{
+    marca:"",
+    nombre:"",
+    acabado:"",
+    descripcion:"",
+    fecha_compra:"",
+    peso:"",
+    precio:"",
+    notas:"",
+    status:"",
+    cantidad:"",
+    categoria:"",
+    link_imagen:"",
+    link_producto_pagina:"",
+    _id:""
+}];
+
+  
+
+  FlagCarrito:boolean = false;
+
   constructor(private http: HttpClient) { 
-    /*this.http.get(`http://localhost:3000/api/producto/`).subscribe((data) =>{
-      this.productos = data;
-      console.log(this.productos)
-    })*/ 
 
   }
 
@@ -99,6 +118,21 @@ export class ProductoComponent implements OnInit {
       this.productos = data;
       console.log(this.productos)
     })
+  }
+
+  AgregarCarrito(data:String){
+    this.productos.forEach((element: producto) => {
+      if(element._id==data){
+        this.carrito.push(element)
+      }
+    });
+    console.log(this.carrito);
+    
+    
+  }
+
+  Pagar(){
+    localStorage.setItem('carrito',JSON.stringify(this.carrito))
   }
 
 }
