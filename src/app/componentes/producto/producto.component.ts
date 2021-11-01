@@ -48,6 +48,8 @@ export class ProductoComponent implements OnInit {
     _id:""
 }];
 
+
+  categoriaSeleccionada:String="Todo";
   
 
   FlagCarrito:boolean = false;
@@ -60,42 +62,55 @@ export class ProductoComponent implements OnInit {
     this.http.get(`http://localhost:3000/api/producto/categoria/Base`).subscribe((data) =>{
       this.productos = data;
       console.log(this.productos)
+      this.categoriaSeleccionada= "Base";
     })
   }
   Blush(){
     this.http.get(`http://localhost:3000/api/producto/categoria/Blush`).subscribe((data) =>{
       this.productos = data;
       console.log(this.productos)
+      this.categoriaSeleccionada= "Blush";
+
     })
   }
   Cancealer(){
     this.http.get(`http://localhost:3000/api/producto/categoria/Cancealer`).subscribe((data) =>{
       this.productos = data;
       console.log(this.productos)
+      this.categoriaSeleccionada= "Cancealer";
+
     })
   }
   Highlight(){
     this.http.get(`http://localhost:3000/api/producto/categoria/Highlight`).subscribe((data) =>{
       this.productos = data;
       console.log(this.productos)
+      this.categoriaSeleccionada= "Highlight";
+
     })
   }
   Labios(){
     this.http.get(`http://localhost:3000/api/producto/categoria/Labios`).subscribe((data) =>{
       this.productos = data;
       console.log(this.productos)
+      this.categoriaSeleccionada= "Labios";
+
     })
   }
   Lapiz(){
     this.http.get(`http://localhost:3000/api/producto/categoria/Lapiz`).subscribe((data) =>{
       this.productos = data;
       console.log(this.productos)
+      this.categoriaSeleccionada= "Lapiz";
+
     })
   }
   Powder(){
     this.http.get(`http://localhost:3000/api/producto/categoria/Powder`).subscribe((data) =>{
       this.productos = data;
       console.log(this.productos)
+      this.categoriaSeleccionada= "Powder";
+
     })
   }
 
@@ -103,12 +118,16 @@ export class ProductoComponent implements OnInit {
     this.http.get(`http://localhost:3000/api/producto/categoria/Skincare`).subscribe((data) =>{
       this.productos = data;
       console.log(this.productos)
+      this.categoriaSeleccionada= "Skincare";
+
     })
   }
   Sombras(){
     this.http.get(`http://localhost:3000/api/producto/categoria/Sombras`).subscribe((data) =>{
       this.productos = data;
       console.log(this.productos)
+      this.categoriaSeleccionada= "Sombras";
+
     })
   }
  
@@ -117,6 +136,8 @@ export class ProductoComponent implements OnInit {
     this.http.get(`http://localhost:3000/api/producto/`).subscribe((data) =>{
       this.productos = data;
       console.log(this.productos)
+      this.categoriaSeleccionada= "Todo";
+
     })
   }
 
@@ -124,8 +145,13 @@ export class ProductoComponent implements OnInit {
     this.productos.forEach((element: producto) => {
       if(element._id==data){
         this.carrito.push(element)
+
       }
     });
+    localStorage.removeItem('carrito')
+
+    localStorage.setItem('carrito',JSON.stringify(this.carrito))
+
     console.log(this.carrito);
     
     

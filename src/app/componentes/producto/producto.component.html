@@ -1,14 +1,36 @@
-<button id="carrito" type="button" (click)="base()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Base</button>
-<button id="carrito" type="button" (click)="Blush()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Blush</button>
-<button id="carrito" type="button" (click)="Cancealer()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Cancealer</button>
-<button id="carrito" type="button" (click)="Highlight()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Highlight</button>
-<button id="carrito" type="button" (click)="Labios()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Labios</button>
-<button id="carrito" type="button" (click)="Lapiz()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Lapiz</button>
-<button id="carrito" type="button" (click)="Powder()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Powder</button>
-<button id="carrito" type="button" (click)="Skincare()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Skincare</button>
-<button id="carrito" type="button" (click)="Sombras()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Sombras</button>
-<button id="carrito" type="button" (click)="ngOnInit()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Todos</button>
+
 <button id="carrito" type="button" (click)="Pagar()" routerLink="/carrito" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Ir a pagar</button>
+<div class="btn-group">
+  <h5>Categorias: </h5>
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{categoriaSeleccionada}}
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" (click)="base()">Base</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" (click)="Blush()">Blush</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" (click)="Cancealer()">Cancealer</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" (click)="Highlight()">Highlight</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" (click)="Labios()">Labios</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" (click)="Lapiz()">Lapiz</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" (click)="Powder()">Powder</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" (click)="Skincare()">Skincare</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" (click)="Sombras()">Sombras</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" (click)="ngOnInit()">Todos</a>
+    <div class="dropdown-divider"></div>
+    
+
+    
+  </div>
+</div>
 
 
 <div class="container mt-5">

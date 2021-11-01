@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
    admin:boolean=false;
    esUsuario:boolean=false;
 
+   esRegister:boolean=false;
+
 
   constructor(private http: HttpClient) { 
     if(localStorage.getItem( 'nombre')){
@@ -45,6 +47,10 @@ export class LoginComponent implements OnInit {
 
     
 
+  }
+
+  register(){
+    this.esRegister = true;
   }
 
   login(){

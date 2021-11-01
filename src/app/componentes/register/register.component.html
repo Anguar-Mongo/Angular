@@ -1,0 +1,71 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="sidenav">
+         <div class="login-main-text">
+            <h2>JACHI<br> Bienvenido</h2>
+            <p>Register from here to access.</p>
+         </div>
+      </div>
+      <div class="main">
+         <div class="col-md-6 col-sm-12">
+            <div class="login-form">
+               <form>
+                <div class="form-group">
+                    <label>Nombre *</label>
+                    <input [(ngModel)]="this.usuario.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" required>
+                 </div>
+                 <div class="form-group">
+                    <label>Apellido Paterno *</label>
+                    <input [(ngModel)]="this.usuario.apellido_pat" name="apellido_pat" type="text" class="form-control" required placeholder="">
+                 </div>
+                 <div class="form-group">
+                    <label>Apellido Materno</label>
+                    <input [(ngModel)]="this.usuario.apellido_mat" name="apellido_mat" type="text" class="form-control"  placeholder="">
+                 </div>
+                 <div class="form-group">
+                    <label>Calle *</label>
+                    <input [(ngModel)]="this.usuario.domicilio.calle" name="calle" type="text" class="form-control" required placeholder="Calle">
+                 </div>
+                 <div class="form-group">
+                    <label>Colonia *</label>
+                    <input [(ngModel)]="this.usuario.domicilio.colonia" name="colonia" type="text" class="form-control" required placeholder="Colonia">
+                 </div>
+                 <div class="form-group">
+                    <label>Estado *</label>
+                    <input [(ngModel)]="this.usuario.domicilio.estado" name="estado" type="text" class="form-control" required placeholder="Estado">
+                 </div>
+                 <div class="form-group">
+                    <label>Municipio *</label>
+                    <input [(ngModel)]="this.usuario.domicilio.municipio" name="municipio" type="text" class="form-control" required placeholder="Municipio">
+                 </div>
+                 <div class="form-group">
+                    <label>Numero Exterior *</label>
+                    <input [(ngModel)]="this.usuario.domicilio.numero_exterior" name="numero_exterior" type="text" class="form-control" required placeholder="">
+                 </div>
+                 <div class="form-group">
+                    <label>Telefono *</label>
+                    <input [(ngModel)]="this.usuario.telefono" name="telefono" type="text" class="form-control" required placeholder="449-253-44-77">
+                 </div>
+                  <div class="form-group">
+                     <label>Correo *</label>
+                     <input [(ngModel)]="this.usuario.correo" name="correo" type="text" class="form-control" required placeholder="Correo">
+                  </div>
+                  <div class="form-group">
+                     <label>Password *</label>
+                     <input [(ngModel)]="this.usuario.password" name="password" type="password" class="form-control" required placeholder="Password">
+                  </div>
+                  <button type="submit" class="btn btn-black" >Login</button>
+                  <button type="submit" routerLink="/register" (click)="register()" class="btn btn-secondary">Register</button>
+               </form>
+            </div>
+         </div>
+      </div>
+
+
+   
+
+   

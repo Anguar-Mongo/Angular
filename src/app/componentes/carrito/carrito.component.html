@@ -20,7 +20,7 @@
                 <h3 class="card-title">{{producto.nombre}}</h3>
                 <h4 class="card-text">Marca: {{producto.marca}}</h4>
                 <p class="card-text">{{producto.descripcion}}</p>
-                <button id="carrito" type="button" (click)="EliminarCarrito(producto._id)" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Eliminar del carrito</button>      </table>
+                <button id="carrito" type="button" (click)="EliminarCarrito(producto.nombre)" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Eliminar del carrito</button>      </table>
           <table class="table " id="TablaProducto">
             <tr>
               <th id="Negro"> Precio</th>
@@ -43,6 +43,10 @@
               <th id="Negro" >Status</th>
               <td id="Blanco">{{producto.status}}</td>
             </tr>
+            <tr>
+              <th id="Negro" >id</th>
+              <td id="Blanco">{{producto._id}}</td>
+            </tr>
             <ng-container *ngIf="producto.notas">
               <tr>
                 <th id="Negro" >Notas</th>
@@ -59,3 +63,6 @@
       </ng-container>
 
     </ng-container>
+
+    <button id="carrito" type="button" (click)="Comprar()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Comprar</button> 
+

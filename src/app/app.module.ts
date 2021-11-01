@@ -13,6 +13,7 @@ import { MenuComponent } from './componentes/menu/menu.component';
 import { MenuAdminComponent } from './componentes/menu-admin/menu-admin.component';
 import { ProductoComponent } from './componentes/producto/producto.component';
 import { CarritoComponent } from './componentes/carrito/carrito.component';
+import { RegisterComponent } from './componentes/register/register.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CarritoComponent } from './componentes/carrito/carrito.component';
     MenuAdminComponent,
     ProductoComponent,
     CarritoComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
