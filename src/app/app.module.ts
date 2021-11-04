@@ -14,6 +14,7 @@ import { MenuAdminComponent } from './componentes/menu-admin/menu-admin.componen
 import { ProductoComponent } from './componentes/producto/producto.component';
 import { CarritoComponent } from './componentes/carrito/carrito.component';
 import { RegisterComponent } from './componentes/register/register.component';
+import { PrecioPipe } from './pipes/precio.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { RegisterComponent } from './componentes/register/register.component';
     ProductoComponent,
     CarritoComponent,
     RegisterComponent,
+    PrecioPipe,
   ],
   imports: [
     BrowserModule,

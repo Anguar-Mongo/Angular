@@ -10,8 +10,12 @@ export interface compra {
             numero_interior:String,
         },
         total:Number,
-        active:boolean
-        _id:String
+        active:boolean,
+        producto:[{
+            id_producto:String,
+            cantidad:Number
+        }],
+        //_id:String
         
 
 }

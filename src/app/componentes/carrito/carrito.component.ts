@@ -3,7 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { compra } from 'src/app/interfaces/compra.interfaz';
 import { envio } from 'src/app/interfaces/envio.interfaz';
 import { usuario } from 'src/app/interfaces/usuario.interfaz';
-import { empleado } from 'src/app/interfaces/empleado.interfaz'
+import { empleado } from 'src/app/interfaces/empleado.interfaz';
+import { PrecioPipe } from 'src/app/pipes/precio.pipe';
+import { se_compra } from 'src/app/interfaces/se_compra.interfaz';
+import Swal from 'sweetalert2'
+
 
 
 @Component({
@@ -31,7 +35,11 @@ export class CarritoComponent implements OnInit {
         },
         total:0,
         active:false,
-        _id:""
+        producto:[{
+          id_producto:"",
+          cantidad:0
+      }],
+        //_id:""
   }
 
   envio:envio={
@@ -88,8 +96,20 @@ empleado:empleado ={
   active:true,
   _id:""
 }
+
+se_compra:se_compra={
+  id_producto:"",
+    id_compra:"",
+    cantidad:0
+}
+
 empleados:Array<empleado>=[];
 envioActualizado:any;
+
+ total:number=0;
+ auxPrecio="";
+
+ compraRegreso:any;
 
 
 
@@ -102,13 +122,37 @@ envioActualizado:any;
       console.log("Carrito: ", this.carrito);
       
     }
+
+    this.carrito.forEach((element: { precio: string; }) => {
+      
+      //total = total+ parseFloat(element.precio.replace("$",'') )
+      if(element.precio!=""){
+        this.total += parseFloat(element.precio.replace("$",''));
+      }
+      console.log(parseFloat(element.precio.replace("$",'')));
+      
+    });
+
     
   }
 
   ngOnInit(): void {
+    var total=0;
+    this.carrito.forEach((element: { precio: string; }) => {
+      
+      //total = total+ parseFloat(element.precio.replace("$",'') )
+      if(element.precio!=""){
+        total += parseFloat(element.precio.replace("$",''));
+      }
+      console.log(parseFloat(element.precio.replace("$",'')));
+      
+    });
+    console.log(total);
+    
   }
 
   Comprar(){
+    this.carrito.total = this.total;
     //SE GENERA ENVIO
     //Parte de FECHAS 
     let DIA_EN_MILISEGUNDOS = 24 * 60 * 60 * 1000;
@@ -123,6 +167,21 @@ envioActualizado:any;
       this.envio.domicilio = this.usuario.domicilio
     })
     this.envio.active=true;
+    var aux ={id_producto:"1",
+              cantidad:0}
+    var cont=0;
+    this.carrito.forEach((element: any) => {
+      if(element._id!='' && cont>0){
+        aux={id_producto:element._id, cantidad:1}
+        this.compra.producto.push(aux)
+        
+      }
+      cont++;
+      
+      
+    });
+    this.compra.producto.shift();
+
     //Se asgina el envio a un empleado
     this.http.get(`http://localhost:3000/api/empleado/`).subscribe((data:any) =>{
       this.empleados= data;
@@ -132,9 +191,7 @@ envioActualizado:any;
       this.empleado = this.empleados[empleadoAsignado]
       console.log(this.envio.domicilio);
       this.envio.id_empleado = this.empleado._id;
-      
-    })
-    this.http.post(`http://localhost:3000/api/envio`,this.envio).subscribe((data) =>{
+      this.http.post(`http://localhost:3000/api/envio`,this.envio).subscribe((data) =>{
       console.log(data)
       //se actualiza el envio
       this.envioActualizado = data;
@@ -144,10 +201,33 @@ envioActualizado:any;
       }
       this.compra.id_envio= this.envioActualizado._id;
 
-      this.http.post(`http://localhost:3000/api/compra`,this.compra).subscribe((data) =>{
-        console.log(data);
-      })
-    })
+        this.http.post(`http://localhost:3000/api/compra`,this.compra).subscribe((data) =>{
+          console.log(data);
+          this.compraRegreso = data;
+          if(this.compraRegreso._id!=""){
+            this.compra.producto.forEach(element => {
+              this.se_compra.id_compra= this.compraRegreso._id;
+              this.se_compra.id_producto = element.id_producto;
+              this.se_compra.cantidad = element.cantidad;
+              this.http.post(`http://localhost:3000/api/se_compra`,this.se_compra).subscribe((data) =>{
+                console.log(data);
+                  Swal.fire(
+                    'Compra exitosa',
+                    'Compra exitosa',
+                    'success'
+                  )
+                });//fin de se_compra
+            })//fin del foreach
+          }
+          
+      });//fin llamada compra
+          
+          
+      });//fin llamada envio
+      
+    });// fin de llamada empleado
+    
+    
     
     
   }
