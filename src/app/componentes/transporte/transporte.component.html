@@ -1,0 +1,126 @@
+<ng-container *ngIf="admin && !editarBoton && !agregarBoton"> 
+    <div class="btn-group">
+        <button type="submit" class="btn btn-primary" (click)="agregar()" style="margin-left: 10%;">Agregar transporte</button>
+    </div>
+
+
+<div class="container mt-5">
+    <ng-container *ngFor="let transporte of transportes | paginate: { itemsPerPage: 5, currentPage: p }">
+    <div id="card" class="card my-3">
+        
+        <div class="card-title">
+          <table>
+            <tr>
+                <h3 class="card-title">Placa: {{transporte.placa}}</h3>
+                <p class="card-text"> </p>
+                <button type="submit" class="btn btn-primary" (click)="EditarTransporte(transporte._id)" style="margin-left: 10%;" >Editar </button>
+                <button type="button" class="btn btn-danger" (click)="eliminar(transporte._id)" style="margin-left: 10%;" aria-haspopup="true" aria-expanded="false">Eliminar</button>
+    
+      
+            </table>
+          <table class="table " id="TablaProducto">
+            <tr>
+              <th id="Negro"> Fecha de compra</th>
+              <td id="Blanco">{{transporte.fecha_compra}}</td>
+            </tr>
+            <tr>
+              <th  scope="row" id="Negro">Empleado</th>
+              <ng-container *ngFor="let empleado of empleados">
+                <ng-container *ngIf="empleado._id == transporte.empleado">
+                    <td id="Blanco">{{empleado.nombre}} {{empleado.apellido_pat}} {{empleado.apellido_mat}}</td>
+                </ng-container>
+              </ng-container>
+            </tr>
+            
+            
+    
+        
+          
+      
+          </table>
+        </div>
+      </div>
+        
+    </ng-container>
+    
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    
+          
+          
+</div>
+
+</ng-container>
+
+
+<!--PARTE PARA EDITAR EMPLEADO-->
+
+<ng-container *ngIf="admin && editarBoton && !agregarBoton">
+    <div class="form-row">
+        <div class="col">
+            <label for="placa">Placa</label>
+            <input type="text" class="form-control" id="placa" aria-describedby="placa" [(ngModel)]="transporte.placa" >
+        </div>
+        <div class="col">
+            <label for="fecha_compra">Fecha compra</label>
+            <input type="date" class="form-control" id="fecha_compra" aria-describedby="fecha_compra" [(ngModel)]="transporte.fecha_compra"  >
+        </div>
+        <div class="col">
+            <label for="empleado">Empleado</label>
+            <select [(ngModel)]="transporte.empleado" name="empleado" id="empleado" class="form-control">
+                <option *ngFor="let empleado of empleados" value="{{empleado._id}}" >{{empleado.nombre}} {{empleado.apellido_pat}} {{empleado.apellido_mat}}</option>
+            </select>  
+        </div>
+    </div>
+  
+  <br>
+  <div class="form-row"> 
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="editarBase()">Editar</button>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="regresar()">Regresar</button>
+    </div>
+  </div>
+  
+  
+  </ng-container>
+  
+
+
+
+
+<!--PARTE PARA AGREGAR EMPLEADO-->
+
+<ng-container *ngIf="admin && !editarBoton && agregarBoton">
+    <div class="form-row">
+        <div class="col">
+            <label for="placa">Placa</label>
+            <input type="text" class="form-control" id="placa" aria-describedby="placa" [(ngModel)]="transporte.placa" >
+        </div>
+        <div class="col">
+            <label for="fecha_compra">Fecha compra</label>
+            <input type="date" class="form-control" id="fecha_compra" aria-describedby="fecha_compra" [(ngModel)]="transporte.fecha_compra"  >
+        </div>
+        <div class="col">
+            <label for="empleado">Empleado</label>
+            <select [(ngModel)]="transporte.empleado" name="empleado" id="empleado" class="form-control">
+                <option *ngFor="let empleado of empleados" value="{{empleado._id}}" >{{empleado.nombre}} {{empleado.apellido_pat}} {{empleado.apellido_mat}}</option>
+            </select>  
+        </div>
+    </div>
+  <br>
+  <div class="form-row"> 
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="agregarBase()">Agregar</button>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="regresar()">Regresar</button>
+    </div>
+  </div>
+  
+  
+  </ng-container>
+  
+  
+  
+    

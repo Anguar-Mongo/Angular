@@ -19,6 +19,7 @@ import { RegisterComponent } from './componentes/register/register.component';
 import { PrecioPipe } from './pipes/precio.pipe';
 import { ProductoAdminComponent } from './componentes/producto-admin/producto-admin.component';
 import { EmpleadoComponent } from './componentes/empleado/empleado.component';
+import { TransporteComponent } from './componentes/transporte/transporte.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { EmpleadoComponent } from './componentes/empleado/empleado.component';
     PrecioPipe,
     ProductoAdminComponent,
     EmpleadoComponent,
+    TransporteComponent,
   ],
   imports: [
     BrowserModule,
