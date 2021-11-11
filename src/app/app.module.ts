@@ -1,9 +1,11 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { Input } from '@angular/core';
+//Para hacer el ngmodel
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +17,7 @@ import { ProductoComponent } from './componentes/producto/producto.component';
 import { CarritoComponent } from './componentes/carrito/carrito.component';
 import { RegisterComponent } from './componentes/register/register.component';
 import { PrecioPipe } from './pipes/precio.pipe';
+import { ProductoAdminComponent } from './componentes/producto-admin/producto-admin.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,7 @@ import { PrecioPipe } from './pipes/precio.pipe';
     CarritoComponent,
     RegisterComponent,
     PrecioPipe,
+    ProductoAdminComponent,
   ],
   imports: [
     BrowserModule,
