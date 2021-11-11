@@ -145,6 +145,7 @@ agregarBoton:boolean = false;
 
   regresar(){
     this.editarBoton= false
+    this.agregarBoton= false
     this.ngOnInit();
    }
 

@@ -18,6 +18,7 @@ import { CarritoComponent } from './componentes/carrito/carrito.component';
 import { RegisterComponent } from './componentes/register/register.component';
 import { PrecioPipe } from './pipes/precio.pipe';
 import { ProductoAdminComponent } from './componentes/producto-admin/producto-admin.component';
+import { EmpleadoComponent } from './componentes/empleado/empleado.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ProductoAdminComponent } from './componentes/producto-admin/producto-ad
     RegisterComponent,
     PrecioPipe,
     ProductoAdminComponent,
+    EmpleadoComponent,
   ],
   imports: [
     BrowserModule,

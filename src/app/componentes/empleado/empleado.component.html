@@ -1,0 +1,217 @@
+<ng-container *ngIf="admin && !editarBoton && !agregarBoton"> 
+    <div class="btn-group">
+        <button type="submit" class="btn btn-primary" (click)="agregar()" style="margin-left: 10%;">Agregar empleado</button>
+    </div>
+
+
+<div class="container mt-5">
+    <ng-container *ngFor="let empleado of empleados | paginate: { itemsPerPage: 5, currentPage: p }">
+    <div id="card" class="card my-3">
+        
+        <div class="card-title">
+          <table>
+            <tr>
+                <h3 class="card-title">{{empleado.nombre}} {{empleado.apellido_pat}} {{empleado.apellido_mat}}</h3>
+                <p class="card-text"> </p>
+                <button type="submit" class="btn btn-primary" (click)="EditarEmpleado(empleado._id)" style="margin-left: 10%;" >Editar </button>
+                <button type="button" class="btn btn-danger" (click)="eliminar(empleado._id)" style="margin-left: 10%;" aria-haspopup="true" aria-expanded="false">Eliminar</button>
+    
+      
+            </table>
+          <table class="table " id="TablaProducto">
+            <tr>
+              <th id="Negro"> Telefono</th>
+              <td id="Blanco">{{empleado.telefono}}</td>
+            </tr>
+            <tr>
+              <th  scope="row" id="Negro">Salario</th>
+              <td id="Blanco">{{empleado.salario}}</td>
+            </tr>
+            <tr>
+              <th id="Negro" scope="row" >Fecha de ingreso</th>
+              <td id="Blanco">{{empleado.fecha_ingreso}}</td>
+            </tr>
+            <tr>
+              <th id="Negro" >Domicilio</th>
+              <td id="Blanco">{{empleado.domicilio.calle}} {{empleado.domicilio.numero_exterior}},
+                   {{empleado.domicilio.colonia}}, {{empleado.domicilio.municipio}}, {{empleado.domicilio.estado}}</td>
+            </tr>
+            
+    
+        
+          
+      
+          </table>
+        </div>
+      </div>
+        
+    </ng-container>
+    
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    
+          
+          
+</div>
+
+</ng-container>
+
+
+<!--PARTE PARA EDITAR EMPLEADO-->
+
+<ng-container *ngIf="admin && editarBoton && !agregarBoton">
+    <div class="form-row">
+        <div class="col">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" aria-describedby="nombre" [(ngModel)]="empleado.nombre" >
+        </div>
+        <div class="col">
+            <label for="apellido_pat">Apellido Paterno</label>
+            <input type="text" class="form-control" id="apellido_pat" aria-describedby="apellido_pat" [(ngModel)]="empleado.apellido_pat"  >
+        </div>
+        <div class="col">
+            <label for="apellido_mat">Apellido Materno</label>
+            <input type="text" class="form-control" [(ngModel)]="empleado.apellido_mat" id="apellido_mat" aria-describedby="apellido_mat"  >
+        </div>
+    </div>
+  
+    <div class="form-row">
+        <div class="col">
+            <label for="calle">Calle</label>
+            <input type="text" class="form-control" [(ngModel)]="empleado.domicilio.calle" id="calle" aria-describedby="calle"  >
+        </div>
+        <div class="col">
+            <label for="colonia">Colonia</label>
+            <input type="text" class="form-control" [(ngModel)]="empleado.domicilio.colonia" id="colonia" aria-describedby="colonia" >
+        </div>
+        <div class="col">
+            <label for="estado">Estado</label>
+            <input type="text" class="form-control" [(ngModel)]="empleado.domicilio.estado" id="estado" aria-describedby="estado" >
+        </div>
+    </div>
+ 
+    <div class="form-row">
+        <div class="col">
+            <label for="municipio">Municipio</label>
+            <input type="text" class="form-control" [(ngModel)]="empleado.domicilio.municipio" id="municipio" aria-describedby="municipio"  >
+        </div>
+        <div class="col">
+            <label for="numero_exterior">Numero exterior</label>
+            <input type="text" class="form-control" [(ngModel)]="empleado.domicilio.numero_exterior" id="numero_exterior" aria-describedby="numero_exterior" >
+        </div>
+        <div class="col">
+            <label for="numero_interior">Numero interior</label>
+            <input type="text" class="form-control" [(ngModel)]="empleado.domicilio.numero_interior" id="numero_interior" aria-describedby="numero_interior" >
+        </div>
+        
+    </div>
+  
+    <div class="form-row">
+        <div class="col">
+            <label for="salario">Salario </label>
+            <input type="number" class="form-control" [(ngModel)]="empleado.salario" id="salario" aria-describedby="salario" >
+        </div>
+        <div class="col">
+            <label for="fecha_ingreso">Fecha de ingreso </label>
+            <input type="date" class="form-control" [(ngModel)]="empleado.fecha_ingreso" id="fecha_ingreso" aria-describedby="fecha_ingreso" >
+        </div>
+        <div class="col">
+            <label for="telefono">Telefono </label>
+            <input type="tel" class="form-control" [(ngModel)]="empleado.telefono" id="telefono" aria-describedby="telefono" >
+        </div>
+    </div>
+  <br>
+  <div class="form-row"> 
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="editarBase()">Editar</button>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="regresar()">Regresar</button>
+    </div>
+  </div>
+  
+  
+  </ng-container>
+  
+
+
+
+
+<!--PARTE PARA AGREGAR EMPLEADO-->
+
+<ng-container *ngIf="admin && !editarBoton && agregarBoton">
+    <div class="form-row">
+        <div class="col">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" aria-describedby="nombre" [(ngModel)]="empleado.nombre" >
+        </div>
+        <div class="col">
+            <label for="apellido_pat">Apellido Paterno</label>
+            <input type="text" class="form-control" id="apellido_pat" aria-describedby="apellido_pat" [(ngModel)]="empleado.apellido_pat"  >
+        </div>
+        <div class="col">
+            <label for="apellido_mat">Apellido Materno</label>
+            <input type="text" class="form-control" [(ngModel)]="empleado.apellido_mat" id="apellido_mat" aria-describedby="apellido_mat"  >
+        </div>
+    </div>
+  
+    <div class="form-row">
+        <div class="col">
+            <label for="calle">Calle</label>
+            <input type="text" class="form-control" [(ngModel)]="empleado.domicilio.calle" id="calle" aria-describedby="calle"  >
+        </div>
+        <div class="col">
+            <label for="colonia">Colonia</label>
+            <input type="text" class="form-control" [(ngModel)]="empleado.domicilio.colonia" id="colonia" aria-describedby="colonia" >
+        </div>
+        <div class="col">
+            <label for="estado">Estado</label>
+            <input type="text" class="form-control" [(ngModel)]="empleado.domicilio.estado" id="estado" aria-describedby="estado" >
+        </div>
+    </div>
+ 
+    <div class="form-row">
+        <div class="col">
+            <label for="municipio">Municipio</label>
+            <input type="text" class="form-control" [(ngModel)]="empleado.domicilio.municipio" id="municipio" aria-describedby="municipio"  >
+        </div>
+        <div class="col">
+            <label for="numero_exterior">Numero exterior</label>
+            <input type="text" class="form-control" [(ngModel)]="empleado.domicilio.numero_exterior" id="numero_exterior" aria-describedby="numero_exterior" >
+        </div>
+        <div class="col">
+            <label for="numero_interior">Numero interior</label>
+            <input type="text" class="form-control" [(ngModel)]="empleado.domicilio.numero_interior" id="numero_interior" aria-describedby="numero_interior" >
+        </div>
+        
+    </div>
+  
+    <div class="form-row">
+        <div class="col">
+            <label for="salario">Salario </label>
+            <input type="number" class="form-control" [(ngModel)]="empleado.salario" id="salario" aria-describedby="salario" >
+        </div>
+        <div class="col">
+            <label for="fecha_ingreso">Fecha de ingreso </label>
+            <input type="date" class="form-control" [(ngModel)]="empleado.fecha_ingreso" id="fecha_ingreso" aria-describedby="fecha_ingreso" >
+        </div>
+        <div class="col">
+            <label for="telefono">Telefono </label>
+            <input type="tel" class="form-control" [(ngModel)]="empleado.telefono" id="telefono" aria-describedby="telefono" >
+        </div>
+    </div>
+  <br>
+  <div class="form-row"> 
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="agregarBase()">Agregar</button>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="regresar()">Regresar</button>
+    </div>
+  </div>
+  
+  
+  </ng-container>
+  
+  
+  
+    
