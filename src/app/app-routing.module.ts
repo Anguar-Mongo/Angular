@@ -6,6 +6,7 @@ import { RegisterComponent } from './componentes/register/register.component';
 import { ProductoAdminComponent } from './componentes/producto-admin/producto-admin.component';
 import { EmpleadoComponent } from './componentes/empleado/empleado.component';
 import { TransporteComponent } from './componentes/transporte/transporte.component';
+import { CompraComponent } from './componentes/compra/compra.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,9 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'productoAD', component: ProductoAdminComponent },
   { path: 'empleado', component: EmpleadoComponent}, 
-  { path: 'transporte', component:TransporteComponent}
+  { path: 'transporte', component:TransporteComponent},
+  { path: 'compra', component:CompraComponent}
+
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

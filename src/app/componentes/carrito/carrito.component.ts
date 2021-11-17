@@ -7,6 +7,8 @@ import { empleado } from 'src/app/interfaces/empleado.interfaz';
 import { PrecioPipe } from 'src/app/pipes/precio.pipe';
 import { se_compra } from 'src/app/interfaces/se_compra.interfaz';
 import Swal from 'sweetalert2'
+import jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
 
 
 
@@ -21,6 +23,8 @@ export class CarritoComponent implements OnInit {
 
   carrito:any;
   aux:string | null="";
+   DIA_EN_MILISEGUNDOS = 24 * 60 * 60 * 1000;
+   hoy = new Date();
 
   compra:compra={
       id_envio:"",
@@ -39,16 +43,16 @@ export class CarritoComponent implements OnInit {
           id_producto:"",
           cantidad:0
       }],
-        //_id:""
+        _id:""
   }
 
   envio:envio={
     fechas:{
-      empaque:new Date(),
-      envio:new Date(),
-      recibido:new Date()
+      empaque:new Date(this.hoy.getTime()+(this.DIA_EN_MILISEGUNDOS)),
+      envio:new Date(this.hoy.getTime()+(2*this.DIA_EN_MILISEGUNDOS)),
+      recibido:new Date(this.hoy.getTime()+(3*this.DIA_EN_MILISEGUNDOS))
   },
-    notas:"",
+    notas:"", 
     domicilio: {
       calle:"",
       colonia:"",
@@ -155,11 +159,11 @@ envioActualizado:any;
     this.carrito.total = this.total;
     //SE GENERA ENVIO
     //Parte de FECHAS 
-    let DIA_EN_MILISEGUNDOS = 24 * 60 * 60 * 1000;
-    const hoy = new Date();
-    this.envio.fechas.empaque=  new Date(hoy.getTime()+DIA_EN_MILISEGUNDOS);
-    this.envio.fechas.envio=  new Date(hoy.getTime()+(2*DIA_EN_MILISEGUNDOS));
-    this.envio.fechas.recibido=  new Date(hoy.getTime()+(3*DIA_EN_MILISEGUNDOS));
+    
+    
+    this.envio.fechas.empaque=  new Date(this.hoy.getTime()+this.DIA_EN_MILISEGUNDOS);
+    this.envio.fechas.envio=  new Date(this.hoy.getTime()+(2*this.DIA_EN_MILISEGUNDOS));
+    this.envio.fechas.recibido=  new Date(this.hoy.getTime()+(3*this.DIA_EN_MILISEGUNDOS));
     //Se llena el domicilio 
     var id_usuario = localStorage.getItem('id');
     this.http.get(`http://localhost:3000/api/usuario/${id_usuario}`).subscribe((data:any) =>{
@@ -250,6 +254,22 @@ envioActualizado:any;
     
 
   }
+
+
+  exportAsPDF()
+      {
+        let data = document.getElementById('MyDIv2');
+        if(data!=null){
+          html2canvas(data).then(canvas => {
+            const contentDataURL = canvas.toDataURL('image/png')  
+            let pdf = new jspdf('l', 'cm', 'a4'); //Generates PDF in landscape mode
+            // let pdf = new jspdf('p', 'cm', 'a4'); Generates PDF in portrait mode
+            pdf.addImage(contentDataURL, 'PNG', 0, 0, 29.7, 21.0);  
+            pdf.save('Filename.pdf');   
+          }); 
+        }  
+        
+      }
 
 
 }

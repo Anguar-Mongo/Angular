@@ -1,6 +1,6 @@
 
-
-<div class="container mt-5">
+<div id="MyDIv">
+<div class="container mt-5" >
     <ng-container *ngFor="let producto of carrito | paginate: { itemsPerPage: 5, currentPage: p }">
         <ng-container *ngIf="producto._id">
     {{[producto._id]}}
@@ -67,3 +67,27 @@
     <button id="carrito" type="button" (click)="Comprar()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Comprar</button> 
 
     <h2>TOTAL: {{total}} </h2>
+
+  </div>
+
+  <button id="carrito" type="button" (click)="exportAsPDF();" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Comprar</button> 
+
+
+  <div id="MyDIv2">
+    <h2>Recibo de compra</h2>
+    <ng-container *ngFor="let producto of carrito" >
+      <ng-container *ngIf="producto.nombre">
+      <h4>Producto: {{producto.nombre}}</h4>
+      <h4>Precio: {{producto.precio}}</h4>
+      
+<br>
+    </ng-container>
+
+    </ng-container>
+    <h4>Fecha de envio: {{envio.fechas.envio}}</h4>
+    <h4>Fecha esperada de llegada: {{envio.fechas.recibido}}</h4>
+    <h2>TOTAL: {{total}} </h2>
+
+
+  </div>
+

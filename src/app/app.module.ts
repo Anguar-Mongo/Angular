@@ -20,6 +20,7 @@ import { PrecioPipe } from './pipes/precio.pipe';
 import { ProductoAdminComponent } from './componentes/producto-admin/producto-admin.component';
 import { EmpleadoComponent } from './componentes/empleado/empleado.component';
 import { TransporteComponent } from './componentes/transporte/transporte.component';
+import { CompraComponent } from './componentes/compra/compra.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { TransporteComponent } from './componentes/transporte/transporte.compone
     ProductoAdminComponent,
     EmpleadoComponent,
     TransporteComponent,
+    CompraComponent,
   ],
   imports: [
     BrowserModule,

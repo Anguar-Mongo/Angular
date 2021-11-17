@@ -15,7 +15,7 @@ export interface compra {
             id_producto:String,
             cantidad:Number
         }],
-        //_id:String
+        _id:String
         
 
 }
