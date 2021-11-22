@@ -5,6 +5,7 @@ import { Input } from '@angular/core';
 //Para hacer el ngmodel
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts';
 
 
 
@@ -21,6 +22,7 @@ import { ProductoAdminComponent } from './componentes/producto-admin/producto-ad
 import { EmpleadoComponent } from './componentes/empleado/empleado.component';
 import { TransporteComponent } from './componentes/transporte/transporte.component';
 import { CompraComponent } from './componentes/compra/compra.component';
+import { ComparativoMensualChartComponent } from './componentes/comparativo-mensual-chart/comparativo-mensual-chart.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { CompraComponent } from './componentes/compra/compra.component';
     EmpleadoComponent,
     TransporteComponent,
     CompraComponent,
+    ComparativoMensualChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ import { CompraComponent } from './componentes/compra/compra.component';
     HttpClientModule,
     FormsModule,
     NgxPaginationModule,
+    ChartsModule
     //Input
   ],
   providers: [],
