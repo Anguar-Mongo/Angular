@@ -79,7 +79,8 @@ export class CarritoComponent implements OnInit {
         numero_exterior:"",
         numero_interior:""
     },
-    telefono:""
+    telefono:"",
+    _id:""
 }
 
 empleado:empleado ={
@@ -115,6 +116,8 @@ envioActualizado:any;
 
  compraRegreso:any;
 
+ generarPdf:boolean=false;
+
 
 
   
@@ -142,6 +145,7 @@ envioActualizado:any;
 
   ngOnInit(): void {
     var total=0;
+    this.generarPdf=false;
     this.carrito.forEach((element: { precio: string; }) => {
       
       //total = total+ parseFloat(element.precio.replace("$",'') )
@@ -231,8 +235,8 @@ envioActualizado:any;
       
     });// fin de llamada empleado
     
-    
-    
+    this.generarPdf = true;
+    this.exportAsPDF();
     
   }
 
@@ -265,7 +269,7 @@ envioActualizado:any;
             let pdf = new jspdf('l', 'cm', 'a4'); //Generates PDF in landscape mode
             // let pdf = new jspdf('p', 'cm', 'a4'); Generates PDF in portrait mode
             pdf.addImage(contentDataURL, 'PNG', 0, 0, 29.7, 21.0);  
-            pdf.save('Filename.pdf');   
+            pdf.save('Recibo.pdf');   
           }); 
         }  
         

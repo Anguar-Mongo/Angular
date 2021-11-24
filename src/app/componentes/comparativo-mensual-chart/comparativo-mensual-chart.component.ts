@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { HttpClient } from '@angular/common/http';
+import jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
 
 
 @Component({
@@ -107,5 +109,20 @@ export class ComparativoMensualChartComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  exportAsPDF()
+      {
+        let data = document.getElementById('MyDIv');
+        if(data!=null){
+          html2canvas(data).then(canvas => {
+            const contentDataURL = canvas.toDataURL('image/png')  
+            let pdf = new jspdf('l', 'cm', 'a4'); //Generates PDF in landscape mode
+            // let pdf = new jspdf('p', 'cm', 'a4'); Generates PDF in portrait mode
+            pdf.addImage(contentDataURL, 'PNG', 0, 0, 29.7, 21.0);  
+            pdf.save('Reporte de productos.pdf');   
+          }); 
+        }  
+        
+      }
 
 }

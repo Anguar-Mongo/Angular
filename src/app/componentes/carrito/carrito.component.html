@@ -1,9 +1,8 @@
 
-<div id="MyDIv">
+<div id="MyDIv" >
 <div class="container mt-5" >
     <ng-container *ngFor="let producto of carrito | paginate: { itemsPerPage: 5, currentPage: p }">
         <ng-container *ngIf="producto._id">
-    {{[producto._id]}}
         <div id="card" class="card my-3">
         
         <div class="card-title">
@@ -70,10 +69,10 @@
 
   </div>
 
-  <button id="carrito" type="button" (click)="exportAsPDF();" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Comprar</button> 
+  <!-- <button id="carrito" type="button" (click)="exportAsPDF();" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Comprar</button> -->
 
-
-  <div id="MyDIv2">
+<div *ngIf="generarPdf">
+  <div id="MyDIv2" >
     <h2>Recibo de compra</h2>
     <ng-container *ngFor="let producto of carrito" >
       <ng-container *ngIf="producto.nombre">
@@ -90,4 +89,6 @@
 
 
   </div>
+
+</div>
 

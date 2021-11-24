@@ -214,7 +214,16 @@ agregarBoton:boolean = false;
      })
    }
 
- 
+   buscar(val:String){
+     console.log(val);
+     
+    this.http.get(`http://localhost:3000/api/producto/buscador/${val}`).subscribe((data) =>{
+      this.productos = data
+      console.log(data);
+      
+    })
+    
+  }
 
 
 }

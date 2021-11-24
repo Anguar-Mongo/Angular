@@ -1,0 +1,237 @@
+
+
+  <ng-container *ngIf="admin && !editarBoton && !agregarBoton"> 
+
+
+    <div class="container">
+        <div class="row">
+         <div class="col-5">
+            <div class="btn-group">
+                <button type="submit" class="btn btn-primary" (click)="agregar()" style="margin-left: 10%;">Agregar usuario</button>
+            </div>
+         </div>
+         <div class="col-7">
+            <form class="form-inline my-2 my-lg-0">
+                <input #buscarInput class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="this.buscarPersona">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="buscar(buscarInput.value)">Search</button>
+              </form>
+         </div>
+       </div>
+     </div>
+      
+    
+
+    
+
+
+<div class="container mt-5">
+    <ng-container *ngFor="let usuario of usuarios | paginate: { itemsPerPage: 5, currentPage: p }">
+    <div id="card" class="card my-3">
+        
+        <div class="card-title">
+          <table>
+            <tr>
+                <h3 class="card-title">{{usuario.nombre}} {{usuario.apellido_pat}} {{usuario.apellido_mat}}</h3>
+                <p class="card-text"> </p>
+                <button type="submit" class="btn btn-primary" (click)="Editarusuario(usuario._id)" style="margin-left: 10%;" >Editar </button>
+                <button type="button" class="btn btn-danger" (click)="eliminar(usuario._id)" style="margin-left: 10%;" aria-haspopup="true" aria-expanded="false">Eliminar</button>
+    
+      
+            </table>
+          <table class="table " id="TablaProducto">
+            <tr>
+              <th id="Negro"> Telefono</th>
+              <td id="Blanco">{{usuario.telefono}}</td>
+            </tr>
+            <tr>
+              <th  scope="row" id="Negro">Correo</th>
+              <td id="Blanco">{{usuario.correo}}</td>
+            </tr>
+            <tr>
+              <th id="Negro" scope="row" >Password</th>
+              <td id="Blanco">{{usuario.password}}</td>
+            </tr>
+            <tr>
+              <th id="Negro" >Domicilio</th>
+              <td id="Blanco">{{usuario.domicilio.calle}} {{usuario.domicilio.numero_exterior}},
+                   {{usuario.domicilio.colonia}}, {{usuario.domicilio.municipio}}, {{usuario.domicilio.estado}}</td>
+            </tr>
+            
+    
+        
+          
+      
+          </table>
+        </div>
+      </div>
+        
+    </ng-container>
+    
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    
+          
+          
+</div>
+
+</ng-container>
+
+
+<!--PARTE PARA EDITAR usuario-->
+
+<ng-container *ngIf="admin && editarBoton && !agregarBoton">
+    <div class="form-row">
+        <div class="col">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" aria-describedby="nombre" [(ngModel)]="usuario.nombre" >
+        </div>
+        <div class="col">
+            <label for="apellido_pat">Apellido Paterno</label>
+            <input type="text" class="form-control" id="apellido_pat" aria-describedby="apellido_pat" [(ngModel)]="usuario.apellido_pat"  >
+        </div>
+        <div class="col">
+            <label for="apellido_mat">Apellido Materno</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.apellido_mat" id="apellido_mat" aria-describedby="apellido_mat"  >
+        </div>
+    </div>
+  
+    <div class="form-row">
+        <div class="col">
+            <label for="calle">Calle</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.domicilio.calle" id="calle" aria-describedby="calle"  >
+        </div>
+        <div class="col">
+            <label for="colonia">Colonia</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.domicilio.colonia" id="colonia" aria-describedby="colonia" >
+        </div>
+        <div class="col">
+            <label for="estado">Estado</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.domicilio.estado" id="estado" aria-describedby="estado" >
+        </div>
+    </div>
+ 
+    <div class="form-row">
+        <div class="col">
+            <label for="municipio">Municipio</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.domicilio.municipio" id="municipio" aria-describedby="municipio"  >
+        </div>
+        <div class="col">
+            <label for="numero_exterior">Numero exterior</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.domicilio.numero_exterior" id="numero_exterior" aria-describedby="numero_exterior" >
+        </div>
+        <div class="col">
+            <label for="numero_interior">Numero interior</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.domicilio.numero_interior" id="numero_interior" aria-describedby="numero_interior" >
+        </div>
+        
+    </div>
+  
+    <div class="form-row">
+        <div class="col">
+            <label for="correo">Correo </label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.correo" id="correo" aria-describedby="correo" >
+        </div>
+        <div class="col">
+            <label for="password">Password </label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.password" id="password" aria-describedby="password" >
+        </div>
+        <div class="col">
+            <label for="telefono">Telefono </label>
+            <input type="tel" class="form-control" [(ngModel)]="usuario.telefono" id="telefono" aria-describedby="telefono" >
+        </div>
+    </div>
+  <br>
+  <div class="form-row"> 
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="editarBase()">Editar</button>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="regresar()">Regresar</button>
+    </div>
+  </div>
+  
+  
+  </ng-container>
+  
+
+
+
+
+<!--PARTE PARA AGREGAR usuario-->
+
+<ng-container *ngIf="admin && !editarBoton && agregarBoton">
+    <div class="form-row">
+        <div class="col">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" aria-describedby="nombre" [(ngModel)]="usuario.nombre" >
+        </div>
+        <div class="col">
+            <label for="apellido_pat">Apellido Paterno</label>
+            <input type="text" class="form-control" id="apellido_pat" aria-describedby="apellido_pat" [(ngModel)]="usuario.apellido_pat"  >
+        </div>
+        <div class="col">
+            <label for="apellido_mat">Apellido Materno</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.apellido_mat" id="apellido_mat" aria-describedby="apellido_mat"  >
+        </div>
+    </div>
+  
+    <div class="form-row">
+        <div class="col">
+            <label for="calle">Calle</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.domicilio.calle" id="calle" aria-describedby="calle"  >
+        </div>
+        <div class="col">
+            <label for="colonia">Colonia</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.domicilio.colonia" id="colonia" aria-describedby="colonia" >
+        </div>
+        <div class="col">
+            <label for="estado">Estado</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.domicilio.estado" id="estado" aria-describedby="estado" >
+        </div>
+    </div>
+ 
+    <div class="form-row">
+        <div class="col">
+            <label for="municipio">Municipio</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.domicilio.municipio" id="municipio" aria-describedby="municipio"  >
+        </div>
+        <div class="col">
+            <label for="numero_exterior">Numero exterior</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.domicilio.numero_exterior" id="numero_exterior" aria-describedby="numero_exterior" >
+        </div>
+        <div class="col">
+            <label for="numero_interior">Numero interior</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.domicilio.numero_interior" id="numero_interior" aria-describedby="numero_interior" >
+        </div>
+        
+    </div>
+  
+    <div class="form-row">
+        <div class="col">
+            <label for="correo">Correo </label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.correo" id="correo" aria-describedby="correo" >
+        </div>
+        <div class="col">
+            <label for="password">Password </label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.password" id="password" aria-describedby="password" >
+        </div>
+        <div class="col">
+            <label for="telefono">Telefono </label>
+            <input type="tel" class="form-control" [(ngModel)]="usuario.telefono" id="telefono" aria-describedby="telefono" >
+        </div>
+    </div>
+  <br>
+  <div class="form-row"> 
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="agregarBase()">Agregar</button>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="regresar()">Regresar</button>
+    </div>
+  </div>
+  
+  
+  </ng-container>
+  
+  
+  
+    

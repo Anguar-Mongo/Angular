@@ -23,6 +23,7 @@ import { EmpleadoComponent } from './componentes/empleado/empleado.component';
 import { TransporteComponent } from './componentes/transporte/transporte.component';
 import { CompraComponent } from './componentes/compra/compra.component';
 import { ComparativoMensualChartComponent } from './componentes/comparativo-mensual-chart/comparativo-mensual-chart.component';
+import { UsuarioComponent } from './componentes/usuario/usuario.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ComparativoMensualChartComponent } from './componentes/comparativo-mens
     TransporteComponent,
     CompraComponent,
     ComparativoMensualChartComponent,
+    UsuarioComponent,
   ],
   imports: [
     BrowserModule,

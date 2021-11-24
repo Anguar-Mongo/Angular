@@ -1,4 +1,4 @@
-<div style="display: block;">
+<div style="display: block;" id="MyDIv" style="height: 500px; width: 1000px;">
   <canvas baseChart
     [datasets]="barChartData"
     [labels]="barChartLabels"
@@ -8,3 +8,6 @@
     [chartType]="barChartType">
   </canvas>
 </div>
+
+<button id="carrito" type="button" (click)="exportAsPDF();" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Comprar</button> 
+

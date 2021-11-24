@@ -28,7 +28,8 @@ export class RegisterComponent implements OnInit {
         numero_exterior:"",
         numero_interior:""
     },
-    telefono:""
+    telefono:"",
+    _id:""
 }
 
   constructor(private http: HttpClient) { }

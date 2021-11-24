@@ -1,37 +1,54 @@
 <ng-container *ngIf="admin && !editarBoton && !agregarBoton">
-<div class="btn-group">
-  <h5>Categorias: </h5>
-  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {{categoriaSeleccionada}}
-  </button>
-  <button type="submit" class="btn btn-primary" (click)="agregar()" style="margin-left: 10%;">Agregar producto</button>
 
-  <div class="dropdown-menu">
-    <a class="dropdown-item" (click)="ngOnInit()">Todos</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" (click)="base()">Base</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" (click)="Blush()">Blush</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" (click)="Cancealer()">Cancealer</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" (click)="Highlight()">Highlight</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" (click)="Labios()">Labios</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" (click)="Lapiz()">Lapiz</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" (click)="Powder()">Powder</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" (click)="Skincare()">Skincare</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" (click)="Sombras()">Sombras</a>
-    <div class="dropdown-divider"></div>
-    
-    
 
+<div class="container">
+  <div class="row">
+   <div class="col-4">
+    <div class="btn-group">
+      <h5>Categorias: </h5>
+      <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{categoriaSeleccionada}}
+      </button>
     
+      <div class="dropdown-menu">
+        <a class="dropdown-item" (click)="ngOnInit()">Todos</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)="base()">Base</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)="Blush()">Blush</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)="Cancealer()">Cancealer</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)="Highlight()">Highlight</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)="Labios()">Labios</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)="Lapiz()">Lapiz</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)="Powder()">Powder</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)="Skincare()">Skincare</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)="Sombras()">Sombras</a>
+        <div class="dropdown-divider"></div>
+        
+        
+    
+        
+      </div>
+    </div>
+
+   </div>
+   <div class="col-4">
+    <button type="submit" class="btn btn-primary" (click)="agregar()" style="margin-left: 10%;">Agregar producto</button>
   </div>
+   <div class="col-4">
+      <form class="form-inline my-2 my-lg-0">
+          <input #buscarInput class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" >
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="buscar(buscarInput.value)">Search</button>
+        </form>
+   </div>
+ </div>
 </div>
 
 

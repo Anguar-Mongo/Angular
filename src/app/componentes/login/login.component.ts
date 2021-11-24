@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit {
           numero_exterior:"",
           numero_interior:""
       },
-      telefono:""
+      telefono:"",
+      _id:""
   }
   usuarioResultado:any;
 

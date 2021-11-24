@@ -12,5 +12,6 @@ export interface usuario{
         numero_exterior:String,
         numero_interior:String,
     },
-    telefono:String
+    telefono:String,
+    _id:String
 }
