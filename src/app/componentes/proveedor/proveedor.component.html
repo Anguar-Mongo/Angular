@@ -1,0 +1,272 @@
+  <ng-container *ngIf="admin && !editarBoton && !agregarBoton && !agregarProductoBoton"> 
+
+
+    <div class="container">
+        <div class="row">
+         <div class="col-5">
+            <div class="btn-group">
+                <button type="submit" class="btn btn-primary" (click)="agregar()" style="margin-left: 10%;">Agregar proveedor</button>
+            </div>
+         </div>
+         
+       </div>
+     </div>
+      
+    
+
+    
+
+
+<div class="container mt-5">
+    <ng-container *ngFor="let proveedor of proveedors | paginate: { itemsPerPage: 5, currentPage: p }">
+    <div id="card" class="card my-3">
+        
+        <div class="card-title">
+          <table>
+            <tr>
+                <h3 class="card-title">{{proveedor.nombre}} </h3>
+                <p class="card-text"> </p>
+                <button type="submit" class="btn btn-primary" (click)="Editarproveedor(proveedor._id)" style="margin-left: 10%;" >Editar </button>
+                <button type="submit" class="btn btn-primary" (click)="agregarProductoBtn(proveedor._id)" style="margin-left: 10%;" >Agregar producto </button>
+                <button type="button" class="btn btn-danger" (click)="eliminar(proveedor._id)" style="margin-left: 10%;" aria-haspopup="true" aria-expanded="false">Eliminar</button>
+    
+      
+            </table>
+          <table class="table " id="TablaProducto">
+            <tr>
+              <th id="Negro"> RFC</th>
+              <td id="Blanco">{{proveedor.RFC}}</td>
+            </tr>
+            <tr>
+              <th  scope="row" id="Negro">Correo</th>
+              <td id="Blanco">{{proveedor.correo}}</td>
+            </tr>
+            <tr>
+              <th id="Negro" scope="row" >telefono</th>
+              <td id="Blanco">{{proveedor.telefono}}</td>
+            </tr>
+            <tr>
+              <th id="Negro" >Domicilio</th>
+              <td id="Blanco">{{proveedor.domicilio.calle}} {{proveedor.domicilio.numero_exterior}},
+                   {{proveedor.domicilio.colonia}}, {{proveedor.domicilio.municipio}}, {{proveedor.domicilio.estado}}</td>
+            </tr>
+            
+    
+        
+          
+      
+          </table>
+        </div>
+      </div>
+        
+    </ng-container>
+    
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    
+          
+          
+</div>
+
+</ng-container>
+
+
+<!--PARTE PARA EDITAR proveedor-->
+
+<ng-container *ngIf="admin && editarBoton && !agregarBoton && !agregarProductoBoton">
+    <div class="form-row">
+        <div class="col">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" aria-describedby="nombre" [(ngModel)]="proveedor.nombre" >
+        </div>
+        <div class="col">
+            <label for="RFC">RFC</label>
+            <input type="text" class="form-control" id="RFC" aria-describedby="RFC" [(ngModel)]="proveedor.RFC"  >
+        </div>
+        <div class="col">
+            <label for="telefono">Telefono</label>
+            <input type="text" class="form-control" [(ngModel)]="proveedor.telefono" id="telefono" aria-describedby="telefono"  >
+        </div>
+    </div>
+  
+    <div class="form-row">
+        <div class="col">
+            <label for="calle">Calle</label>
+            <input type="text" class="form-control" [(ngModel)]="proveedor.domicilio.calle" id="calle" aria-describedby="calle"  >
+        </div>
+        <div class="col">
+            <label for="colonia">Colonia</label>
+            <input type="text" class="form-control" [(ngModel)]="proveedor.domicilio.colonia" id="colonia" aria-describedby="colonia" >
+        </div>
+        <div class="col">
+            <label for="estado">Estado</label>
+            <input type="text" class="form-control" [(ngModel)]="proveedor.domicilio.estado" id="estado" aria-describedby="estado" >
+        </div>
+    </div>
+ 
+    <div class="form-row">
+        <div class="col">
+            <label for="municipio">Municipio</label>
+            <input type="text" class="form-control" [(ngModel)]="proveedor.domicilio.municipio" id="municipio" aria-describedby="municipio"  >
+        </div>
+        <div class="col">
+            <label for="numero_exterior">Numero exterior</label>
+            <input type="text" class="form-control" [(ngModel)]="proveedor.domicilio.numero_exterior" id="numero_exterior" aria-describedby="numero_exterior" >
+        </div>
+        <div class="col">
+            <label for="numero_interior">Numero interior</label>
+            <input type="text" class="form-control" [(ngModel)]="proveedor.domicilio.numero_interior" id="numero_interior" aria-describedby="numero_interior" >
+        </div>
+        
+    </div>
+  
+    <div class="form-row">
+        <div class="col">
+            <label for="correo">Correo </label>
+            <input type="text" class="form-control" [(ngModel)]="proveedor.correo" id="correo" aria-describedby="correo" >
+        </div>
+        <div class="col">
+            <label for="password">Agregar producto a proveer </label>
+            <select [(ngModel)]="AgregarProducto" name="producto" id="producto" class="form-control">
+                <option *ngFor="let producto of productos" value="{{producto._id}}" >{{producto.nombre}} </option>
+            </select>          
+        </div>
+    </div>
+  <br>
+  <div class="form-row"> 
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="editarBase()">Editar</button>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="regresar()">Regresar</button>
+    </div>
+  </div>
+  
+  
+  </ng-container>
+  
+
+
+
+
+<!--PARTE PARA AGREGAR proveedor-->
+
+<ng-container *ngIf="admin && !editarBoton && agregarBoton && !agregarProductoBoton">
+    <div class="form-row">
+        <div class="col">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" aria-describedby="nombre" [(ngModel)]="proveedor.nombre" >
+        </div>
+        <div class="col">
+            <label for="RFC">RFC</label>
+            <input type="text" class="form-control" id="RFC" aria-describedby="RFC" [(ngModel)]="proveedor.RFC"  >
+        </div>
+        <div class="col">
+            <label for="telefono">Telefono</label>
+            <input type="tel" class="form-control" [(ngModel)]="proveedor.telefono" id="telefono" aria-describedby="telefono"  >
+        </div>
+    </div>
+  
+    <div class="form-row">
+        <div class="col">
+            <label for="calle">Calle</label>
+            <input type="text" class="form-control" [(ngModel)]="proveedor.domicilio.calle" id="calle" aria-describedby="calle"  >
+        </div>
+        <div class="col">
+            <label for="colonia">Colonia</label>
+            <input type="text" class="form-control" [(ngModel)]="proveedor.domicilio.colonia" id="colonia" aria-describedby="colonia" >
+        </div>
+        <div class="col">
+            <label for="estado">Estado</label>
+            <input type="text" class="form-control" [(ngModel)]="proveedor.domicilio.estado" id="estado" aria-describedby="estado" >
+        </div>
+    </div>
+ 
+    <div class="form-row">
+        <div class="col">
+            <label for="municipio">Municipio</label>
+            <input type="text" class="form-control" [(ngModel)]="proveedor.domicilio.municipio" id="municipio" aria-describedby="municipio"  >
+        </div>
+        <div class="col">
+            <label for="numero_exterior">Numero exterior</label>
+            <input type="text" class="form-control" [(ngModel)]="proveedor.domicilio.numero_exterior" id="numero_exterior" aria-describedby="numero_exterior" >
+        </div>
+        <div class="col">
+            <label for="numero_interior">Numero interior</label>
+            <input type="text" class="form-control" [(ngModel)]="proveedor.domicilio.numero_interior" id="numero_interior" aria-describedby="numero_interior" >
+        </div>
+        
+    </div>
+  
+    <div class="form-row">
+        <div class="col">
+            <label for="correo">Correo </label>
+            <input type="text" class="form-control" [(ngModel)]="proveedor.correo" id="correo" aria-describedby="correo" >
+        </div>
+        <div class="col">
+            <label for="password">Agregar producto a proveer </label>
+            <select [(ngModel)]="proveedor.productos" name="producto" id="producto" class="form-control" multiple>
+                <option *ngFor="let producto of productos" value="{{producto._id}}" >{{producto.nombre}} </option>
+            </select>          
+        </div>
+        
+    </div>
+  <br>
+  <div class="form-row"> 
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="agregarBase()">Agregar</button>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="regresar()">Regresar</button>
+    </div>
+  </div>
+  
+  
+  </ng-container>
+
+
+  <!--PARTE PARA agregar producto-->
+
+<ng-container *ngIf="admin && !editarBoton && !agregarBoton && agregarProductoBoton">
+    <div class="form-row">
+        <div class="col">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" aria-describedby="nombre" [(ngModel)]="proveedor.nombre" >
+        </div>
+        
+    </div>
+  
+    
+  
+    <div class="form-row">
+        <div class="col">
+            <label for="producto">Agregar producto a proveer </label>
+            <select [(ngModel)]="provee.id_producto" name="producto" id="producto" class="form-control">
+                <ng-container *ngFor="let producto2 of proveedor.productos"> 
+                    <ng-container *ngFor="let producto of productos" > 
+
+                        <option *ngIf="producto2 == producto._id" value="{{producto._id}}" >{{producto.nombre}} </option>
+                    </ng-container>
+                </ng-container>
+            </select>          
+        </div>
+        <div class="col">
+            <label for="cantidad">Cantidad </label>
+            <input type="number" class="form-control" [(ngModel)]="provee.cantidad" id="cantidad" aria-describedby="cantidad" >
+        </div>
+    </div>
+  <br>
+  <div class="form-row"> 
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="agregarProductoBase()">Editar</button>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="regresar()">Regresar</button>
+    </div>
+  </div>
+  
+  
+  </ng-container>
+  
+  
+  
+    

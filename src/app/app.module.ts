@@ -24,6 +24,7 @@ import { TransporteComponent } from './componentes/transporte/transporte.compone
 import { CompraComponent } from './componentes/compra/compra.component';
 import { ComparativoMensualChartComponent } from './componentes/comparativo-mensual-chart/comparativo-mensual-chart.component';
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
+import { ProveedorComponent } from './componentes/proveedor/proveedor.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { UsuarioComponent } from './componentes/usuario/usuario.component';
     CompraComponent,
     ComparativoMensualChartComponent,
     UsuarioComponent,
+    ProveedorComponent,
   ],
   imports: [
     BrowserModule,

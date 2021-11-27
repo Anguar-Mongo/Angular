@@ -9,6 +9,7 @@ import { TransporteComponent } from './componentes/transporte/transporte.compone
 import { CompraComponent } from './componentes/compra/compra.component';
 import { ComparativoMensualChartComponent } from './componentes/comparativo-mensual-chart/comparativo-mensual-chart.component';
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
+import { ProveedorComponent } from './componentes/proveedor/proveedor.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,9 @@ const routes: Routes = [
   { path: 'transporte', component:TransporteComponent},
   { path: 'compra', component:CompraComponent},
   {path:'grafica', component:ComparativoMensualChartComponent},
-  {path:'usuario', component:UsuarioComponent }
+  {path:'usuario', component:UsuarioComponent },
+  {path:'proveedor', component:ProveedorComponent },
+
 
 ];
 @NgModule({
