@@ -10,6 +10,7 @@ import { CompraComponent } from './componentes/compra/compra.component';
 import { ComparativoMensualChartComponent } from './componentes/comparativo-mensual-chart/comparativo-mensual-chart.component';
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
 import { ProveedorComponent } from './componentes/proveedor/proveedor.component';
+import { ComparativoProveedoresComponent } from './components/comparativo-proveedores/comparativo-proveedores.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,8 @@ const routes: Routes = [
   {path:'grafica', component:ComparativoMensualChartComponent},
   {path:'usuario', component:UsuarioComponent },
   {path:'proveedor', component:ProveedorComponent },
+  {path:'graficaproveedor', component:ComparativoProveedoresComponent },
+
 
 
 ];
