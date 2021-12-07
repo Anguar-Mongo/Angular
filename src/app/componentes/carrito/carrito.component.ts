@@ -111,6 +111,9 @@ se_compra:se_compra={
 empleados:Array<empleado>=[];
 envioActualizado:any;
 
+cupon:any;
+tieneCupon:boolean=false;
+
  total:number=0;
  auxPrecio="";
 
@@ -155,11 +158,26 @@ envioActualizado:any;
       console.log(parseFloat(element.precio.replace("$",'')));
       
     });
-    console.log(total);
+    var id_usuario = localStorage.getItem('id');
+    this.http.get(`http://localhost:3000/api/cupon/${id_usuario}`).subscribe((data:any) =>{
+      this.cupon= data[0];
+      console.log(data);
+      this.tieneCupon= this.cupon.active
+      console.log(data);
+    })
+    
     
   }
 
   Comprar(){
+    var id_usuario = localStorage.getItem('id');
+    if(!this.tieneCupon){
+      this.cupon.active = this.tieneCupon
+      this.http.put(`http://localhost:3000/api/cupon/${this.cupon._id}`,this.cupon).subscribe((data)=>{
+
+      })
+    }
+
     this.carrito.total = this.total;
     //SE GENERA ENVIO
     //Parte de FECHAS 
@@ -169,7 +187,7 @@ envioActualizado:any;
     this.envio.fechas.envio=  new Date(this.hoy.getTime()+(2*this.DIA_EN_MILISEGUNDOS));
     this.envio.fechas.recibido=  new Date(this.hoy.getTime()+(3*this.DIA_EN_MILISEGUNDOS));
     //Se llena el domicilio 
-    var id_usuario = localStorage.getItem('id');
+    
     this.http.get(`http://localhost:3000/api/usuario/${id_usuario}`).subscribe((data:any) =>{
       this.usuario= data
       this.envio.domicilio = this.usuario.domicilio
@@ -275,5 +293,16 @@ envioActualizado:any;
         
       }
 
+      usarCupon(){
+        this.total = this.total - ((this.cupon.porcentaje/100) *this.total )
+        console.log(this.total);
+        this.tieneCupon=false;
+        Swal.fire(
+          'Se uso el cupon',
+          'Se uso el cupon',
+          'success'
+        )
+        
+      }
 
 }

@@ -14,6 +14,19 @@ import Swal from 'sweetalert2'
 })
 export class RegisterComponent implements OnInit {
   //Swal = require('sweetalert2')
+  DIA_EN_MILISEGUNDOS = 24 * 60 * 60 * 1000;
+   hoy = new Date();
+  cupon={
+        nombre:"Inicio",
+        porcentaje:20,
+        fecha_emision:new Date(this.hoy.getTime()).toString(),
+        fecha_termino:new Date(this.hoy.getTime()+(30*this.DIA_EN_MILISEGUNDOS)).toString(),
+        numero_usado:0,
+        active:true,
+        codigo:"INICIOCODIGO",
+        id_usuario:"",
+  }
+
   usuario:usuario ={
     nombre: "",
     apellido_pat:"",
@@ -46,13 +59,17 @@ export class RegisterComponent implements OnInit {
         'question'
       )
     }else{
-      this.http.post(`http://localhost:3000/api/usuario/`,this.usuario).subscribe((data) =>{
+      this.http.post(`http://localhost:3000/api/usuario/`,this.usuario).subscribe((data:any) =>{
         console.log(data);
         Swal.fire(
           'Registro exitoso',
           'Registro exitoso',
           'success'
         )
+        this.cupon.id_usuario = data._id;
+        this.http.post(`http://localhost:3000/api/cupon/`,this.cupon).subscribe((data2:any) =>{
+          
+        })
         window.location.reload()
 
         

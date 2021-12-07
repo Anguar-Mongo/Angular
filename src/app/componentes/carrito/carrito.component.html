@@ -62,9 +62,29 @@
       </ng-container>
 
     </ng-container>
+    <ng-container *ngIf="tieneCupon">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <button id="carrito" type="button" (click)="Comprar()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Comprar</button> 
+        </div>
+        <div class="col-6">
+          <button id="carrito" type="button" (click)="usarCupon()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i>Usar Cupon</button> 
+        </div>
+      </div>
+    </div>
+    </ng-container>
 
-    <button id="carrito" type="button" (click)="Comprar()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Comprar</button> 
-
+    <ng-container *ngIf="!tieneCupon">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <button id="carrito" type="button" (click)="Comprar()" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Comprar</button> 
+          </div>
+          
+        </div>
+      </div>
+      </ng-container>
     <h2>TOTAL: {{total}} </h2>
 
   </div>
