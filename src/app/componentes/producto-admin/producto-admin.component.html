@@ -193,6 +193,14 @@
               <input type="url" class="form-control" [(ngModel)]="producto.link_producto_pagina" id="link_producto_pagina" aria-describedby="link_producto_pagina" value="{{producto.link_producto_pagina}}" >
           </div>
       </div>
+      <div class="form-row"> 
+
+        <div class="col">
+            <label for="descuento">Descuento</label>
+            <input type="number" class="form-control" [(ngModel)]="descuento" id="descuento" aria-describedby="descuento" value="{{descuento}}" >
+        </div>
+        
+    </div>
       <br>
       <div class="form-row"> 
         <div class="col">
@@ -202,6 +210,7 @@
           <button type="submit" class="btn btn-primary" (click)="regresar()">Regresar</button>
         </div>
       </div>
+      
 
 
 </ng-container>

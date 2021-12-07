@@ -50,6 +50,8 @@ export class ProductoComponent implements OnInit {
 
 
   categoriaSeleccionada:String="Todo";
+
+  descuentos:any;
   
 
   FlagCarrito:boolean = false;
@@ -146,7 +148,36 @@ export class ProductoComponent implements OnInit {
       console.log(this.productos)
       this.categoriaSeleccionada= "Todo";
 
+      this.http.get(`http://localhost:3000/api/descuento/`).subscribe((data:any) =>{
+        this.descuentos = data;
+        console.log(this.descuentos);
+        this.productos.forEach((element:any) => {
+          
+          this.descuentos.forEach((element2:any) => {
+            //console.log(element2);
+            if(element._id == element2.producto){
+              element.notas= `DESCUENTO DE ${element2.porcentaje}% `+ element.notas + " Precio origial de "+  element.precio
+              element.precio= element.precio.replace(/[$.]/g,'');
+              console.log(element.precio);
+              element.precio = element.precio/100
+              element.precio = element.precio - ((element2.porcentaje/100)*element.precio)
+              element.precio ="$"+element.precio.toString()
+              console.log("HOLAAAA");
+              
+              
+              
+            }
+            
+          });
+          
+        });
+     
+      })
+
     })
+
+    
+
   }
 
   AgregarCarrito(data:String){
