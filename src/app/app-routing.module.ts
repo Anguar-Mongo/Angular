@@ -11,6 +11,7 @@ import { ComparativoMensualChartComponent } from './componentes/comparativo-mens
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
 import { ProveedorComponent } from './componentes/proveedor/proveedor.component';
 import { ComparativoProveedoresComponent } from './components/comparativo-proveedores/comparativo-proveedores.component';
+import { ApartadoComponent } from './componentes/apartado/apartado.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path:'grafica', component:ComparativoMensualChartComponent},
   {path:'usuario', component:UsuarioComponent },
   {path:'proveedor', component:ProveedorComponent },
+  {path:'apartado', component:ApartadoComponent },
   {path:'graficaproveedor', component:ComparativoProveedoresComponent },
 
 

@@ -26,6 +26,7 @@ import { ComparativoMensualChartComponent } from './componentes/comparativo-mens
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
 import { ProveedorComponent } from './componentes/proveedor/proveedor.component';
 import { ComparativoProveedoresComponent } from './components/comparativo-proveedores/comparativo-proveedores.component';
+import { ApartadoComponent } from './componentes/apartado/apartado.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ComparativoProveedoresComponent } from './components/comparativo-provee
     UsuarioComponent,
     ProveedorComponent,
     ComparativoProveedoresComponent,
+    ApartadoComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { producto } from 'src/app/interfaces/producto.interfaz';
+import Swal from 'sweetalert2'
+
 
 
 
@@ -12,6 +14,8 @@ import { producto } from 'src/app/interfaces/producto.interfaz';
 })
 export class ProductoComponent implements OnInit {
   p: number = 1;
+  DIA_EN_MILISEGUNDOS = 24 * 60 * 60 * 1000;
+   hoy = new Date();
   producto:producto = {
         marca:"",
         nombre:"",
@@ -47,6 +51,15 @@ export class ProductoComponent implements OnInit {
     link_producto_pagina:"",
     _id:""
 }];
+
+
+  apartado={
+    id_producto: "",
+    fecha_limite:new Date(this.hoy.getTime()+(30*this.DIA_EN_MILISEGUNDOS)).toString(),
+    monto_pagado:0,
+    piezas:0,
+    id_usuario:"",
+  }
 
 
   categoriaSeleccionada:String="Todo";
@@ -209,6 +222,25 @@ export class ProductoComponent implements OnInit {
      
    })
    
+ }
+
+ Apartar(id:String){
+   var id_usuario = localStorage.getItem('id');
+   if(id_usuario)
+    this.apartado.id_usuario = id_usuario;
+   this.apartado.id_producto=id.toString();
+   this.apartado.monto_pagado=0;
+   this.apartado.piezas=1;
+
+   this.http.post(`http://localhost:3000/api/apartado`,this.apartado).subscribe((data:any)=>{
+    Swal.fire(
+      'Se aparto correctamente',
+      'Se aparto correctamente, se te cobrara dentro de 30 dias',
+      'success'
+    )
+   })
+
+
  }
 
 }

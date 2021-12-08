@@ -1,0 +1,78 @@
+
+<div class="container mt-5">
+<ng-container *ngFor="let producto of productos | paginate: { itemsPerPage: 5, currentPage: p }">
+<ng-container *ngFor="let apartado of apartados">
+<ng-container *ngIf="apartado.id_producto == producto._id">
+<div id="card" class="card my-3">
+    
+    <div class="card-title">
+      <table>
+        <tr>
+          <td>
+              <div class="circular--landscape">
+                <a href="{{producto.link_producto_pagina}}" target="_blank">
+                  <img class="card-img-top" src="{{producto.link_imagen}}" alt="Card image cap" >
+                </a>
+              </div>
+            </td>
+          <td>
+            <h3 class="card-title">{{producto.nombre}}</h3>
+            <h4 class="card-text">Marca: {{producto.marca}}</h4>
+            <p class="card-text">{{producto.descripcion}}</p>
+            <button id="apartar" type="button" (click)="Eliminar(apartado._id)" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Eliminar</button>      
+           </table>
+      <table class="table " id="TablaProducto">
+        <tr>
+          <th id="Negro"> Precio</th>
+          <td id="Blanco">{{producto.precio}}</td>
+        </tr>
+        <tr>
+          <th  scope="row" id="Negro">Categoria</th>
+          <td id="Blanco">{{producto.categoria}}</td>
+        </tr>
+        <tr>
+          <th id="Negro" scope="row" >Peso</th>
+          <td id="Blanco">{{producto.peso}}</td>
+        </tr>
+        <tr>
+          <th id="Negro" >Acabado</th>
+          <td id="Blanco">{{producto.acabado}}</td>
+          
+        </tr>
+        <tr>
+          <th id="Negro" >Status</th>
+          <td id="Blanco">{{producto.status}}</td>
+        </tr>
+        <tr>
+            
+                    <th id="Negro" >Fecha de cobro</th>
+                    <td id="Blanco">{{apartado.fecha_limite}}</td>
+          </tr>
+        <ng-container *ngIf="producto.notas">
+          <tr>
+            <th id="Negro" >Notas</th>
+            <td id="Blanco">{{producto.notas}}</td>
+          </tr>
+      </ng-container>
+
+    
+      
+  
+      </table>
+    </div>
+  </div>
+    
+</ng-container>
+</ng-container>
+</ng-container>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+      
+      
+    </div>
+    <div class="card-body">
+      </div>
+
+  
+

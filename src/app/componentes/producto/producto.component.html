@@ -66,7 +66,9 @@
             <h3 class="card-title">{{producto.nombre}}</h3>
             <h4 class="card-text">Marca: {{producto.marca}}</h4>
             <p class="card-text">{{producto.descripcion}}</p>
-            <button id="carrito" type="button" (click)="AgregarCarrito(producto._id)" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Comprar</button>      </table>
+            <button id="carrito" type="button" (click)="AgregarCarrito(producto._id)" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Comprar</button>     
+            <button id="apartar" type="button" (click)="Apartar(producto._id)" class="btn btn-outline-dark btn-lg btn-block"><i class="fa fa-shopping-cart"></i> Apartar</button>      
+           </table>
       <table class="table " id="TablaProducto">
         <tr>
           <th id="Negro"> Precio</th>

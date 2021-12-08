@@ -25,6 +25,8 @@ export class MenuComponent implements OnInit {
     _id:""
 }];
 
+nombre:any="";
+
   constructor() { }
 
 
@@ -35,6 +37,8 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
+     this.nombre = localStorage.getItem('nombre')?.toString();
+    
   }
 
   Pagar(){
